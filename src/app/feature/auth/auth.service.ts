@@ -4,6 +4,7 @@ import { tap, catchError } from "rxjs/operators";
 import { AuthModule } from "./auth.module";
 import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
+import { DeezerApiCredentials } from "../../../environments/environment";
 
 @Injectable()
 export class AuthService {

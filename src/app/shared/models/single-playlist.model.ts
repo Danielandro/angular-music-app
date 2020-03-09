@@ -1,4 +1,5 @@
-import { BasePlaylist, Creator } from './base-playlist.interface';
+// import { BasePlaylist, Creator } from './base-playlist.interface';
+import { BasePlaylist, Creator } from "./playlist.models";
 
 export interface SinglePlaylist extends BasePlaylist {
   description: string;

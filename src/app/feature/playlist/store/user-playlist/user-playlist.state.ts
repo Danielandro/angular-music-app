@@ -1,11 +1,12 @@
 import { State, Selector, StateContext, Action } from '@ngxs/store';
 import { EntityState, createEntityAdapter } from 'ngxs-entity';
-import { UserPlaylist } from 'src/app/shared/models/user-playlist.model';
+// import { UserPlaylist } from 'src/app/shared/models/user-playlist.model';
 import { UserPlaylistActions } from "./user-playlist.actions";
 import { Injectable } from '@angular/core';
 import { MusicApiService } from 'src/app/core/services/music-api.service';
 import { tap, catchError } from 'rxjs/operators';
-import { ErrorData } from 'src/app/shared/models/base-playlist.interface';
+// import { ErrorData } from 'src/app/shared/models/base-playlist.interface';
+import { UserPlaylist, ErrorData, UserPlaylistAdapter } from "../../../../shared/models/playlist.models";
 
 // add other state properties here
 export interface UserPlaylistStateModel extends EntityState<UserPlaylist> {
@@ -29,7 +30,9 @@ const { selectAll } = adapter.getSelectors();
 @Injectable()
 export class UserPlaylistState {
 
-  constructor(private musicApiService: MusicApiService) { }
+  constructor(
+    private musicApiService: MusicApiService,
+    private UserPlaylistAdapter: UserPlaylistAdapter) { }
 
   // SELECTORS
   @Selector()
@@ -63,7 +66,9 @@ export class UserPlaylistState {
           if (res.error) {
             return dispatch(new UserPlaylistActions.FetchFailed(res.error));
           } else {
-            return dispatch(new UserPlaylistActions.FetchSuccessful(res.data));
+            //use adapter here to convert data into  UserPlaylist[]
+            const playlists = res.data.map(item => this.UserPlaylistAdapter.adapt(item));
+            return dispatch(new UserPlaylistActions.FetchSuccessful(playlists));
           }
 
         })

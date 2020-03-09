@@ -1,5 +1,6 @@
-import { UserPlaylist } from 'src/app/shared/models/user-playlist.model';
-import { ErrorData, PlaylistError } from 'src/app/shared/models/base-playlist.interface';
+// import { UserPlaylist } from 'src/app/shared/models/user-playlist.model';
+// import { ErrorData, PlaylistError } from 'src/app/shared/models/base-playlist.interface';
+import { UserPlaylist, ErrorData, PlaylistError } from "src/app/shared/models/playlist.models";
 
 export namespace UserPlaylistActions {
   export class FetchUserPlaylists {

@@ -5,11 +5,12 @@ import { tap, map, catchError } from "rxjs/operators";
 import { Artist } from '../../shared/models/artist';
 import { SinglePlaylist } from '../../shared/models/single-playlist.model';
 import { TopPlaylistResponseData, TopPlaylist } from "../../shared/models/top-playlist.model";
-import { UserPlaylistResponseData, UserPlaylist } from "../../shared/models/user-playlist.model";
+// import { UserPlaylistResponseData, UserPlaylist } from "../../shared/models/user-playlist.model";
 import { CoreModule } from '../core.module';
 import { Store } from '@ngxs/store';
 import { UserPlaylistActions } from 'src/app/feature/playlist/store/user-playlist/user-playlist.actions';
-import { ErrorData, PlaylistError } from 'src/app/shared/models/base-playlist.interface';
+// import { ErrorData, PlaylistError } from 'src/app/shared/models/base-playlist.interface';
+import { UserPlaylistResponseData, PlaylistError } from "../../shared/models/playlist.models";
 
 @Injectable({
   providedIn: CoreModule
@@ -65,6 +66,7 @@ export class MusicApiService {
     if (err.error instanceof ErrorEvent) {
       // A client-side or network error occured. Handle it accordingly!
       message = `An error occured: ${err.error.message}`;
+
     } else {
       // The backend returned an unsuccessful response code.
       message = `Server returned code: ${err.status}, error message is: ${err.message}`;
